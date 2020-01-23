@@ -1,5 +1,13 @@
 {
   "development": {
+    "username": "ibEjgWrSuB",
+    "password": "tSd9fUatJD",
+    "database": "ibEjgWrSuB",
+    "host": "remotemysql.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "development2": {
     "username": "root",
     "password": "password",
     "database": "BUDGETEER",
