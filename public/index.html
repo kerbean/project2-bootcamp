@@ -1,5 +1,15 @@
+<!-- TODO List (HTML Side):
+
+    1. create expense/income check
+
+    2. Create new user modal
+
+    3. Assign 'total' to rhs of page
+
+    4. 'show all items' page
+ -->
+
 <!DOCTYPE html>
-<!-- saved from url=(0061)http://getbootstrap.com/2.3.2/examples/starter-template.html# -->
 <html lang="en">
 
 <head>
@@ -10,255 +20,168 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
+    <!-- bootstrap integration -->
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 60px;
-            /* 60px to make the container go all the way to the bottom of the topbar */
-        }
-    </style>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
+    <!-- custom stylesheet -->
+    <link href="styles/styles.css" rel="stylesheet">
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-        href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-        href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-        href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed"
-        href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li><a href="#">Home</a></li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
+
+    <!-- Login Modal Content -->
+    <form class="modal-content" id="loginModal" hidden>
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" id="loginButton">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
         </div>
-    </div>
 
-    <div class='container' id='addBudgetDiv'>
-        <h1>Add Budget</h1>
-        <br>
-        <form class="form-horizontal">
-            <div class="control-group">
-                <div class="controls" id="error-msg" style="display:none;color:'red';">
-                    Please fill in all fields.
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="name">Name</label>
-                <div class="controls">
-                    <input type="text" id="name" placeholder="Only A-Z, 0-9, spaces">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="starting_amount">Amount</label>
-                <div class="controls">
-                    <span class="add-on">$</span>
-                    <input class="span2" type="number" id="starting_amount" placeholder="Enter An Amount">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="sid_dropdown">Category</label>
-                <div class="controls">
-                    <select class="form-control" id="sid_dropdown">
-                    </select>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="controls">
-                    <button type="button" class="btn" id="add-budget-button">Add</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- <div class='container' id='searchBudgetDiv'>
-        <h1>Search Budget</h1>
-        <br>
-        <form class="form-horizontal" >
-        <div class="control-group">
-        <label class="control-label" for="search_budget_name">Name</label>
-            <div class="controls">
-                <input type="text" id="search_budget_name" placeholder="Budget Name">
-            </div>
+        <div class="container">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
-            
-        <div class="control-group">
-            <label class="control-label" for="search_sid_dropdown">Staff</label>    
-            <div class="controls">
-            <select class="form-control" id="search_sid_dropdown">
-            </select>
-            </div>
-        </div>  
-        
-        <div class="control-group">
-            <div class="controls">
-                <button type="button" class="btn" id="search-budget-button">Search</button>
+    </form>
+
+
+
+    <div id="content">
+        <!-- Container for Adding Expenses/Income -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="#">Home</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
             </div>
         </div>
 
-        <div class="control-group">
-            <div class="controls">
-                <button type="button" class="btn" id="view-all-budget-button">View All</button>
-            </div>
-        </div>    
-        </form>   -->
+        <div class='container' id='addBudgetDiv'>
+            <h1>Add Budget</h1>
+            <br>
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <div class="controls" id="error-msg" style="display:none;color:'red';">
+                        Please fill in all fields.
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" id="name" placeholder="Only A-Z, 0-9, spaces">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="starting_amount">Amount</label>
+                    <div class="controls">
+                        <span class="add-on">$</span>
+                        <input class="span2" type="number" id="starting_amount" placeholder="Enter An Amount">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="sid_dropdown">Category</label>
+                    <div class="controls">
+                        <select class="form-control" id="sid_dropdown" required="required">
+                            <option hidden>Select an option</option>
+                            <option value="essentials">Essentials</option>
+                            <option value="splurge">Splurge</option>
+                        </select>
+                    </div>
+                </div>
 
-    <div id="results">
-        <h1>Results</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <td>Budget Name</td>
-                    <td>Amount</td>
-                    <td>Category</td>
-                </tr>
-            </thead>
-            <tbody id="results-rows">
+                <!-- Radio Button - Income -->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="income" name="inlineDefaultRadiosExample">
+                    <label class="custom-control-label" for="income">Income</label>
+                </div>
 
-            </tbody>
-        </table>
+                <!-- Radio Button - Expense -->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="expense" name="inlineDefaultRadiosExample">
+                    <label class="custom-control-label" for="expense">Expense</label>
+                </div>
+
+
+                <!-- Add Button -->
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="button" class="btn" id="add-budget-button">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Running Total of Expense -->
+        <div id="total">
+            <h1>Total</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Income</td>
+                        <td>Expense</td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="incomeTotal">
+                        </td>
+                        <td id="expenseTotal">
+                        </td>
+                        <td id="runningTotal">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
+        <!-- Last 10 Results of Budget -->
+        <div id="results">
+            <h1>Results</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Budget Name</td>
+                        <td>Amount</td>
+                        <td>Category</td>
+                    </tr>
+                </thead>
+                <tbody id="results-rows">
+
+                </tbody>
+            </table>
+        </div>
     </div>
-    </div>
-
-    </div>
-
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="./js/index.js"></script>
-    <script src="js/bootstrap-transition.js"></script>
-    <script src="js/bootstrap-alert.js"></script>
-    <script src="js/bootstrap-modal.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap-tab.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap-popover.js"></script>
-    <script src="js/bootstrap-button.js"></script>
-    <script src="js/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap-carousel.js"></script>
-    <script src="js/bootstrap-typeahead.js"></script> -->
 
     <script src="./js/index.js"></script>
-    <!-- 
-    <script>
-        jQuery(document).ready(function () {
-            jQuery('#tabs > div').hide(); // hide all child divs
-            jQuery('#tabs div:first').show(); // show first child dive
-            jQuery('#tabsnav li:first').addClass('active');
-
-            populateStaff();
-
-            jQuery('.menu-internal').click(function () {
-                jQuery('#tabsnav li').removeClass('active');
-                var currentTab = jQuery(this).attr('href');
-                jQuery('#tabsnav li a[href="' + currentTab + '"]').parent().addClass('active');
-                jQuery('#tabs > div').hide();
-                jQuery(currentTab).show();
-                populateStaff();
-                return false;
-            });
-        });
-
-        $("#add-budget-button").click(function () {
-            var name = $("input#name").val();
-            var starting_amount = $("input#starting_amount").val();
-            var sid_dropdown = $("#sid_dropdown").val();
-
-            if (name === "" || starting_amount === "" || sid_dropdown === "") {
-                $('#error-msg').show();
-                return false;
-            }
-
-            var dataString = 'type=Budget' + '&name=' + name + '&starting_amount=' + starting_amount + '&sid_dropdown=' + sid_dropdown;
-            //alert(dataString);
-
-            $.ajax({
-                type: "POST",
-                url: "add.php",
-                data: dataString,
-                success: function () {
-                    $('#addBudgetDiv').html("<div id='message'></div>");
-                    $('#message').html("<h2>Budget Added!</h2>")
-                        .append("<p><a href='budget.html'>Add another</a></p>");
-                    // .hide()
-                    // .fadeIn(1500, function() {
-                    //   $('#message').append("Test");
-                    // });
-                }
-            });
-            return false;
-        });
-
-        $("#search-budget-button").click(function () {
-            var name = $("input#search_budget_name").val();
-            var sid = $("#search_sid_dropdown").val();
-
-            var dataString = 'type=Budget';
-
-            if (name != "") {
-                dataString = dataString + "&name=" + name;
-            }
-            if (sid != "" && sid != "none") {
-                dataString = dataString + "&sid=" + sid;
-            }
-
-
-            //alert (dataString);
-
-            $.ajax({
-                type: "GET",
-                url: "search.php",
-                data: dataString,
-                success: function (text) {
-                    $('#results-rows').html(text);
-                }
-            });
-            return false;
-        });
-
-        $("#view-all-budget-button").click(function () {
-            var dataString = 'type=Budget&all=true';
-
-            $.ajax({
-                type: "GET",
-                url: "search.php",
-                data: dataString,
-                success: function (text) {
-                    $('#results-rows').html(text);
-                }
-            });
-            return false;
-        });
-
-
-    </script> -->
-
 
 </body>
 
