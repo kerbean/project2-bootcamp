@@ -5,6 +5,9 @@
 // *** Dependencies
 // =============================================================
 const express = require("express");
+const exphbs = require("express-handlebars");
+const path = require("path");
+
 
 // Sets up the Express App
 // =============================================================
@@ -17,9 +20,16 @@ var db = require("./models");
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
+app.use(express.static('static'));
+
+app.get("/index", function (req, res) {
+  res.render("index");
+});
 
 // Routes
 // =============================================================
@@ -32,3 +42,12 @@ db.sequelize.sync().then(function () {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+app.listen(3000);
+
+
+
+
+
+
+
