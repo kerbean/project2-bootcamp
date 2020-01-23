@@ -37,22 +37,6 @@ module.exports = function (app) {
         }
     ));
 
-    passport.serializeUser(function (user, done) {
-        done(null, user.username);
-    });
-
-    passport.deserializeUser((username, done) => {
-        done(null, { username: username });
-    });
-
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated()) {
-            return next();
-        } else {
-            return res.redirect('/login');
-        }
-    }
-
     // passport.use(new LocalStrategy({
     //     usernameField: 'user_username',
     //     passwordField: 'user_password'
@@ -86,6 +70,24 @@ module.exports = function (app) {
     //     }
     // ));
 
+    passport.serializeUser(function (user, done) {
+        done(null, user.username);
+    });
+
+    passport.deserializeUser((username, done) => {
+        done(null, { username: username });
+    });
+
+    function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        } else {
+            return res.redirect('/login');
+        }
+    }
+
+
+
     // app.use(passport.initialize());
     // app.use(passport.session());
 
@@ -95,107 +97,107 @@ module.exports = function (app) {
     // // });
 
 
-    // app.post('/login', passport.authenticate('local'),
-    //     // {
-    //     //     successRedirect: "/home",
-    //     //     failureRedirect: '/login',
-    //     //     failureFlash: true
-    //     // }),
-    //     function (req, res) {
-    //         console.log("I reached here.")
-    //         //req.body.username
+    app.post('/login', passport.authenticate('local'),
+        // {
+        //     successRedirect: "/home",
+        //     failureRedirect: '/login',
+        //     failureFlash: true
+        // }),
+        function (req, res) {
+            console.log("I reached here.")
+            //req.body.username
 
-    //         // If this function gets called, authentication was successful.
-    //         // `req.user` contains the authenticated user.
+            // If this function gets called, authentication was successful.
+            // `req.user` contains the authenticated user.
 
-    //         //res.redirect('/users/' + req.user.username);
-    //         res.json({ res });
-    //     });
-
-
-    // app.get("/user=:user", function (req, res) {
-    //     db.Logs.findAll({
-    //         where: {
-    //             UserId: req.params.user
-    //         }
-    //     }).then(function (result) {
-    //         res.json(result);
-    //     });
-    // });
-
-    // app.get("/api/category=:category", function (req, res) {
-    //     db.Logs.findAll({
-    //         where: {
-    //             logs_category: req.params.category
-    //         }
-    //     }).then(function (result) {
-    //         res.json(result);
-    //     });
-    // });
-
-    // app.post("/additem", function (req, res) {
-    //     db.Logs.create({
-    //         logs_name: req.body.logs_name,
-    //         logs_category: req.body.logs_category,
-    //         logs_price: req.body.logs_price,
-    //         logs_currency: req.body.logs_currency
-    //     }).then(function (result) {
-    //         res.json(result);
-    //     });
-    // });
+            //res.redirect('/users/' + req.user.username);
+            res.json({ res });
+        });
 
 
+    app.get("/user=:user", function (req, res) {
+        db.Logs.findAll({
+            where: {
+                UserId: req.params.user
+            }
+        }).then(function (result) {
+            res.json(result);
+        });
+    });
+
+    app.get("/api/category=:category", function (req, res) {
+        db.Logs.findAll({
+            where: {
+                logs_category: req.params.category
+            }
+        }).then(function (result) {
+            res.json(result);
+        });
+    });
+
+    app.post("/additem", function (req, res) {
+        db.Logs.create({
+            logs_name: req.body.logs_name,
+            logs_category: req.body.logs_category,
+            logs_price: req.body.logs_price,
+            logs_currency: req.body.logs_currency
+        }).then(function (result) {
+            res.json(result);
+        });
+    });
 
 
-    // app.post("/register", async (req, res) => {
 
-    //     hash.update(req.body.user_password);
-    //     let hashpash = await hash.digest('hex');
 
-    //     db.Users.create({
-    //         user_username: req.body.user_username,
-    //         user_password: hashpash,
-    //         user_name: req.body.user_name
-    //     }).then(function (result) {
-    //         res.json(result);
-    //         //res.redirect('/home);
-    //     });
-    // });
+    app.post("/register", async (req, res) => {
 
-    // app.post("/addcategory", function (req, res) {
-    //     db.Users.create({
-    //         category_name: req.body.category_name
-    //     }).then(function (result) {
-    //         res.json(result);
-    //     });
-    // });
+        hash.update(req.body.user_password);
+        let hashpash = await hash.digest('hex');
 
-    // app.delete("/delitem=:id", function (req, res) {
-    //     db.Logs.destroy({
-    //         where: {
-    //             id: req.params.id
-    //         }
-    //     })
-    //         .then(function (result) {
-    //             res.json(result);
-    //         });
-    // });
+        db.Users.create({
+            user_username: req.body.user_username,
+            user_password: hashpash,
+            user_name: req.body.user_name
+        }).then(function (result) {
+            res.json(result);
+            //res.redirect('/home);
+        });
+    });
 
-    // app.put("/upditem", function (req, res) {
-    //     db.Logs.update({
-    //         logs_name: req.body.logs_name,
-    //         logs_category: req.body.logs_category,
-    //         logs_price: req.body.logs_price,
-    //         logs_currency: req.body.logs_currency
-    //     }, {
-    //         where: {
-    //             id: req.body.id
-    //         }
-    //     })
-    //         .then(function (result) {
-    //             res.json(result);
-    //         });
-    // });
+    app.post("/addcategory", function (req, res) {
+        db.Users.create({
+            category_name: req.body.category_name
+        }).then(function (result) {
+            res.json(result);
+        });
+    });
+
+    app.delete("/delitem=:id", function (req, res) {
+        db.Logs.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(function (result) {
+                res.json(result);
+            });
+    });
+
+    app.put("/upditem", function (req, res) {
+        db.Logs.update({
+            logs_name: req.body.logs_name,
+            logs_category: req.body.logs_category,
+            logs_price: req.body.logs_price,
+            logs_currency: req.body.logs_currency
+        }, {
+            where: {
+                id: req.body.id
+            }
+        })
+            .then(function (result) {
+                res.json(result);
+            });
+    });
 
 
 };
