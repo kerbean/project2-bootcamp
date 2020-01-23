@@ -9,180 +9,209 @@
     4. 'show all items' page
  -->
 
- <!DOCTYPE html>
- <html lang="en">
- 
- <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-     <meta charset="utf-8">
-     <title>Budgeteer</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="description" content="">
-     <meta name="author" content="">
- 
-     <!-- bootstrap integration -->
-     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
-     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
- 
-     <!-- custom stylesheet -->
-     <link href="styles/styles.css" rel="stylesheet">
- 
-     <!-- jQuery -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- </head>
- 
- <body>
- 
- 
-     <!-- Login Modal Content -->
-     <form class="modal-content" id="loginModal" hidden>
- 
-         <div class="container">
-             <label for="uname"><b>Username</b></label>
-             <input type="text" placeholder="Enter Username" name="uname" required>
- 
-             <label for="psw"><b>Password</b></label>
-             <input type="password" placeholder="Enter Password" name="psw" required>
- 
-             <button type="submit" id="loginButton">Login</button>
-             <label>
-                 <input type="checkbox" checked="checked" name="remember"> Remember me
-             </label>
-         </div>
- 
-         <div class="container">
-             <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                 class="cancelbtn">Cancel</button>
-             <span class="psw">Forgot <a href="#">password?</a></span>
-         </div>
-     </form>
- 
- 
- 
-     <div id="content">
-         <!-- Container for Adding Expenses/Income -->
-         <div class="navbar navbar-inverse navbar-fixed-top">
-             <div class="navbar-inner">
-                 <div class="container">
-                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                         <span class="icon-bar"></span>
-                         <span class="icon-bar"></span>
-                         <span class="icon-bar"></span>
-                     </button>
-                     <div class="nav-collapse collapse">
-                         <ul class="nav">
-                             <li><a href="#">Home</a></li>
-                         </ul>
-                     </div>
-                     <!--/.nav-collapse -->
-                 </div>
-             </div>
-         </div>
- 
-         <div class='container' id='addBudgetDiv'>
-             <h1>Add Budget</h1>
-             <br>
-             <form class="form-horizontal">
-                 <div class="control-group">
-                     <div class="controls" id="error-msg" style="display:none;color:'red';">
-                         Please fill in all fields.
-                     </div>
-                 </div>
-                 <div class="control-group">
-                     <label class="control-label" for="name">Name</label>
-                     <div class="controls">
-                         <input type="text" id="name" placeholder="Only A-Z, 0-9, spaces">
-                     </div>
-                 </div>
-                 <div class="control-group">
-                     <label class="control-label" for="starting_amount">Amount</label>
-                     <div class="controls">
-                         <span class="add-on">$</span>
-                         <input class="span2" type="number" id="starting_amount" placeholder="Enter An Amount">
-                     </div>
-                 </div>
-                 <div class="control-group">
-                     <label class="control-label" for="sid_dropdown">Category</label>
-                     <div class="controls">
-                         <select class="form-control" id="sid_dropdown" required="required">
-                             <option hidden>Select an option</option>
-                             <option value="essentials">Essentials</option>
-                             <option value="splurge">Splurge</option>
-                         </select>
-                     </div>
-                 </div>
- 
-                 <!-- Radio Button - Income -->
-                 <div class="custom-control custom-radio custom-control-inline">
-                     <input type="radio" class="custom-control-input" id="income" name="inlineDefaultRadiosExample">
-                     <label class="custom-control-label" for="income">Income</label>
-                 </div>
- 
-                 <!-- Radio Button - Expense -->
-                 <div class="custom-control custom-radio custom-control-inline">
-                     <input type="radio" class="custom-control-input" id="expense" name="inlineDefaultRadiosExample">
-                     <label class="custom-control-label" for="expense">Expense</label>
-                 </div>
- 
- 
-                 <!-- Add Button -->
-                 <div class="control-group">
-                     <div class="controls">
-                         <button type="button" class="btn" id="add-budget-button">Add</button>
-                     </div>
-                 </div>
-             </form>
-         </div>
- 
-         <!-- Running Total of Expense -->
-         <div id="total">
-             <h1>Total</h1>
-             <table class="table table-striped">
-                 <thead>
-                     <tr>
-                         <td>Income</td>
-                         <td>Expense</td>
-                         <td>Total</td>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     <tr>
-                         <td id="incomeTotal">
-                         </td>
-                         <td id="expenseTotal">
-                         </td>
-                         <td id="runningTotal">
-                         </td>
-                     </tr>
-                 </tbody>
-             </table>
-         </div>
- 
- 
- 
- 
- 
- 
-         <!-- Last 10 Results of Budget -->
-         <div id="results">
-             <h1>Results</h1>
-             <table class="table table-striped">
-                 <thead>
-                     <tr>
-                         <td>Budget Name</td>
-                         <td>Amount</td>
-                         <td>Category</td>
-                     </tr>
-                 </thead>
-                 <tbody id="results-rows">
- 
-                 </tbody>
-             </table>
-         </div>
-     </div>
- 
-     <script src="./js/index.js"></script>
- 
- </body>
- 
- </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Budgeteer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- bootstrap integration -->
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- custom stylesheet -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+    <!-- Login Modal Content -->
+    <form class="modal-content" id="loginModal">
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" id="loginButton">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+    </div>
+
+    <div id="content" hidden>
+        <!-- Container for Adding Expenses/Income -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="#">Home</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class='container' id='addBudgetDiv'>
+            <h1>Add Budget</h1>
+            <br>
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <div class="controls" id="error-msg" style="display:none;color:'red';">
+                        Please fill in all fields.
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" id="name" placeholder="Only A-Z, 0-9, spaces">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="starting_amount">Amount</label>
+                    <div class="controls">
+                        <span class="add-on">$</span>
+                        <input class="span2" type="number" id="starting_amount" placeholder="Enter An Amount">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="sid_dropdown">Category</label>
+                    <div class="controls">
+                        <select class="form-control" id="sid_dropdown" required="required">
+                            <option hidden>Select an option</option>
+                            <option value="essentials">Essentials</option>
+                            <option value="splurge">Splurge</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Radio Button - Income -->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="income" name="inlineDefaultRadiosExample">
+                    <label class="custom-control-label" for="income">Income</label>
+                </div>
+
+                <!-- Radio Button - Expense -->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="expense" name="inlineDefaultRadiosExample">
+                    <label class="custom-control-label" for="expense">Expense</label>
+                </div>
+
+
+                <!-- Add Button -->
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="button" class="btn" id="add-budget-button">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Running Total of Expense -->
+        <div id="total">
+            <h1>Total</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Income</td>
+                        <td>Expenses</td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="incomeTotal">
+                        </td>
+                        <td id="expenseTotal">
+                        </td>
+                        <td id="runningTotal">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+
+        <!-- Last 10 Results of Budget -->
+        <div id="results">
+            <div id="full-list">
+                <h1>Log Of Last 10 Transactions:</h1>
+            </div>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td>Amount</td>
+                        <td>Category</td>
+                    </tr>
+                </thead>
+                <tbody id="results-rows">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- full log of transactions modal -->
+    <div class="modal fade in" id="full-list-modal" hidden>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Full List Of Transactions:</h5>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td class="modal-title">Type</td>
+                            <td class="modal-title">Name</td>
+                            <td class="modal-title">Amount</td>
+                            <td class="modal-title">Category</td>
+                        </tr>
+                    </thead>
+                    <tbody id="full-results-rows">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="full-list-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+
+</body>
+
+</html>
