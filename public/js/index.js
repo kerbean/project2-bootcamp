@@ -1,11 +1,11 @@
-$(document).ready(function () {
-    $('#add-budget-button').hide();
-    $('input').change(function () {
-        if ($('#name').val() && $('#starting_amount').val() && $('#sid_dropdown').val()) {
-            $('#add-budget-button').show();
-        }
-    });
-});
+// $(document).ready(function () {
+//     $('#add-budget-button').hide();
+//     $('input').change(function () {
+//         if ($('#name').val() && $('#starting_amount').val() && $('#sid_dropdown').val()) {
+//             $('#add-budget-button').show();
+//         }
+//     });
+// });
 
 $('#loginButton').on('click', function () {
     // successful login
@@ -22,7 +22,8 @@ resultArray = []
 
 
 //adding items to results table
-$('#add-budget-button').on("click", function () {
+$('#add-budget-button').on("click", function(event) {
+    event.preventDefault();
 
     //storing values from forms into variables
     let name = $("#name").val();
