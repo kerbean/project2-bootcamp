@@ -8,7 +8,6 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const path = require("path");
 
-=======
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -21,12 +20,9 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
-
 // Static directory
 app.use(express.static("public"));
-app.use(express.static('static'));
+app.use(express.static("static"));
 
 app.get("/index", function (req, res) {
   res.render("index");
