@@ -138,7 +138,6 @@ module.exports = function (app) {
     app.post("/additem", function (req, res) {
         console.log("Post request received")
         db.Log.create({
-            logs_date: req.body.date,
             logs_name: req.body.name,
             logs_type: req.body.type,
             logs_amount: req.body.amount,
@@ -167,13 +166,13 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/addcategory", function (req, res) {
-        db.Users.create({
-            category_name: req.body.category_name
-        }).then(function (result) {
-            res.json(result);
-        });
-    });
+    // app.post("/addcategory", function (req, res) {
+    //     db.Users.create({
+    //         category_name: req.body.category_name
+    //     }).then(function (result) {
+    //         res.json(result);
+    //     });
+    // });
 
     app.delete("/delitem=:id", function (req, res) {
         db.Logs.destroy({

@@ -1,7 +1,16 @@
 DROP DATABASE IF EXISTS BUDGETEER;
 
 CREATE DATABASE BUDGETEER;
--- Use BUDGETEER;
+ Use BUDGETEER;
+
+Create TABLE LOG(
+    logs_date varchar(100) not null,
+    logs_type varchar(100) not null,
+    logs_amount float not null,
+    logs_category varchar(100) not null,
+        id int not null auto_increment,
+    primary key(id)
+)
 
 
 -- CREATE TABLE USER(

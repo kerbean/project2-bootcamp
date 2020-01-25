@@ -1,9 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
     var Log = sequelize.define("Log", {
-        logs_date: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        },
         logs_name: {
             type: DataTypes.STRING,
             allowNull: false
