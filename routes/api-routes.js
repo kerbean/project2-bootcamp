@@ -136,12 +136,15 @@ module.exports = function (app) {
     });
 
     app.post("/additem", function (req, res) {
-        db.Logs.create({
-            logs_name: req.body.logs_name,
-            logs_category: req.body.logs_category,
-            logs_price: req.body.logs_price,
-            logs_currency: req.body.logs_currency
+        console.log("Post request received")
+        db.Log.create({
+            logs_date: req.body.date,
+            logs_name: req.body.name,
+            logs_type: req.body.type,
+            logs_amount: req.body.amount,
+            logs_category: req.body.category
         }).then(function (result) {
+            console.log("Logging result " + result);
             res.json(result);
         });
     });

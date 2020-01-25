@@ -1,9 +1,15 @@
-var expenseChart = document.getElementById("pie-chart");
+const expenseChartElement = document.getElementById("pie-chart");
 
-new Chart(expenseChart, {
+expenseChart = new Chart(expenseChartElement, {
   type: "doughnut",
   data: {
-    labels: ["Household", "Bills", "Pets", "Travel", "Sport & Leisure"],
+    labels: [
+      "Household",
+      "Bills",
+      "Transportation",
+      "Recreation",
+      "Miscellaneous"
+    ],
     datasets: [
       {
         label: "Amount (AUD)",
@@ -14,7 +20,13 @@ new Chart(expenseChart, {
           "#D04AE0",
           "#D647AC"
         ],
-        data: [478, 1267, 234, 284, 433]
+        data: [
+          totalPerCategory.household,
+          totalPerCategory.bills,
+          totalPerCategory.transportation,
+          totalPerCategory.recreation,
+          totalPerCategory.miscellaneous
+        ]
       }
     ]
   },
