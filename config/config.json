@@ -9,7 +9,7 @@
   },
   "development2": {
     "username": "root",
-    "password": "trademe27",
+    "password": "password",
     "database": "BUDGETEER",
     "host": "127.0.0.1",
     "dialect": "mysql",
